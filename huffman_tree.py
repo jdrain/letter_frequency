@@ -18,7 +18,7 @@ class huffman_tree:
         if current_node.right != None:
             dfs(current_node.right)
 
-    def construct_from_list_of_tuples(tuple_ls):
+    def construct_from_list_of_tuples(self,tuple_ls):
         # the second tuple val should be the one with the weighting
         # list should be sorted so in descending order
         i = len(tuple_ls) - 1
@@ -30,10 +30,10 @@ class huffman_tree:
             if not isinstance(tuple_ls[i],node) and not isinstance(tuple_ls[i-1],node):
                 nd = node(tuple_ls[i])
                 nd1 = node(tuple_ls[i-1])
-            else if not isinstance(tuple_ls[i],node):
+            elif not isinstance(tuple_ls[i],node):
                 nd = node(tuple_ls[i])
                 nd1 = tuple_ls[i-1]
-            else if not isinstance(tuple_ls[i-1],node):
+            elif not isinstance(tuple_ls[i-1],node):
                 nd = tuple_ls[i]
                 nd1 = node(tuple_ls[i-1])
             else:
@@ -41,7 +41,7 @@ class huffman_tree:
                 nd1 = tuple_ls[i-1]
 
             #create the combined node
-            top_nd = node((None,nd.data[1]+nd.data[2]))
+            top_nd = node((None,nd.data[1]+nd1.data[1]))
             top_nd.set_right(nd)
             top_nd.set_left(nd1)
 
@@ -52,8 +52,9 @@ class huffman_tree:
 
             #adjust i
             i = len(tuple_ls) - 1
-        root = top_nd
-        
+
+        self.root = top_nd
+
 class node:
 
     def __init__(self,tuple_data):
