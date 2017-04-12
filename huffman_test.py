@@ -14,12 +14,7 @@ with open("big.txt","r") as f:
                 #initialize the key
                 letter_freq[key] = 1
             count += 1.0
-    count_ls = []
-    for key in letter_freq.keys():
-        letter_freq[key] = letter_freq[key]/count
-        print("KEY: %s, VAL: %f" % (key, letter_freq[key]))
-        #now sort the key - val pairs as a list of tuples
-        count_ls.append((key, letter_freq[key]))
+    count_ls = [(key,letter_freq[key]) for key in letter_freq.keys()]
 
 #now sort the key - val pairs as a list of tuples
 count_ls.sort(key=lambda tup: tup[1], reverse=True)
