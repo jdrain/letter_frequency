@@ -4,7 +4,6 @@ class huffman_tree:
         self.root = root
 
     def DFS(self, root):
-        # bit of a misnomer right now. More so a depth first traversal
         ls = [root]
         if self.left != None:
             dfs(self.left)
@@ -20,18 +19,24 @@ class huffman_tree:
             dfs(current_node.right)
 
     def BFT(self):
+
         next_round = self.root.get_children()
         next_round_tmp = []
+        complete_traversal = [self.root]
+        for i in next_round:
+            complete_traversal.append(i)
+        
         while next_round != []:
             del next_round_tmp[:]
             for n in next_round:
                 #keep traversing
                 for i in n.get_children():
-                    print("KEY: %s VAL: %d" % (i.data[0],i.data[1]))
                     next_round_tmp.append(i)
             del next_round[:]
             for i in next_round_tmp:
                 next_round.append(i)
+                complete_traversal.append(i)
+        return complete_traversal
 
     def construct_from_list_of_tuples(self,tuple_ls):
         # the second tuple val should be the one with the weighting
