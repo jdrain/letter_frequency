@@ -18,8 +18,9 @@ def get_frequency_ls(src_file):
     return count_ls
 
 #write the ls into a json for storage
-def ls_to_json_file(freq_ls,out_json):
-    dic = {"ls:":freq_ls}
+def get_json_from_txt_file(src_file,out_json):
+    freq_ls = get_frequency_ls(src_file)
+    dic = {src_file:freq_ls}
     s = json.dumps(dic,indent=4)
     with open(out_json,'w+') as f:
         f.write(s)
