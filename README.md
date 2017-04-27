@@ -3,4 +3,4 @@ This repository holds files for a counter that will record character frequency i
 Hopefully it will be of some use in coming up with an encoding scheme for specialized data.
 
 Issues:
-  + currently, the highest value does not get added to the tree...
+  + Now we need to add functionality that actually encodes and decodes files
