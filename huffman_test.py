@@ -1,7 +1,6 @@
 from huffman_tree import node, huffman_tree
 
-#used to count the frequency of letters in a large text file
-
+#count the frequency of letters in a large text file
 count = 0
 letter_freq = {}
 with open("big.txt","r") as f:
@@ -18,13 +17,19 @@ with open("big.txt","r") as f:
 
 #now sort the key - val pairs as a list of tuples
 count_ls.sort(key=lambda tup: tup[1], reverse=True)
+print("\nSorted list of <key, val> pairs")
 for i in count_ls:
     print("KEY: %s, VAL: %d" % (i[0],i[1]))
 
 #number of characters
-print("char volume: %d" % len(count_ls))
+print("\nchar volume: %d" % len(count_ls))
 
+# test tree construction and breadth first traversal
+# bft should yield the frequency in descending order
 rt = node((None,None))
 t = huffman_tree(rt)
 t.construct_from_list_of_tuples(count_ls)
-t.BFT()
+traversal = t.BFT()
+print("\nBreadth First Traversal: \n")
+for i in traversal:
+    print("KEY: %s VAL: %d" % (i.data[0],i.data[1]))
